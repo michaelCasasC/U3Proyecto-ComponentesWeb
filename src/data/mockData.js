@@ -1,0 +1,46 @@
+export const specialtiesData = [
+  { id: 1, name: 'Cardiología', icon: 'Favorite', description: 'Diagnóstico y tratamiento de enfermedades del corazón y sistema circulatorio.', color: '#e53935', doctorsCount: 4 },
+  { id: 2, name: 'Pediatría', icon: 'ChildCare', description: 'Atención médica integral para niños y adolescentes.', color: '#43a047', doctorsCount: 4 },
+  { id: 3, name: 'Traumatología', icon: 'Healing', description: 'Tratamiento de lesiones del sistema musculoesquelético.', color: '#fb8c00', doctorsCount: 3 },
+  { id: 4, name: 'Neurología', icon: 'Psychology', description: 'Diagnóstico y tratamiento de trastornos del sistema nervioso.', color: '#8e24aa', doctorsCount: 3 },
+  { id: 5, name: 'Dermatología', icon: 'Spa', description: 'Cuidado de la piel, cabello y uñas.', color: '#ec407a', doctorsCount: 4 },
+  { id: 6, name: 'Oftalmología', icon: 'Visibility', description: 'Diagnóstico y tratamiento de enfermedades oculares.', color: '#00897b', doctorsCount: 3 },
+  { id: 7, name: 'Medicina General', icon: 'LocalHospital', description: 'Atención primaria y prevención de enfermedades.', color: '#3949ab', doctorsCount: 5 },
+]
+
+export const doctorsData = [
+  { id: 1, name: 'Dr. Carlos Mendoza', specialtyId: 1, specialty: 'Cardiología', rating: 4.8, experience: 15, photo: '', schedule: 'Lun-Vie 8:00-14:00', available: true },
+  { id: 2, name: 'Dra. Ana Ramírez', specialtyId: 1, specialty: 'Cardiología', rating: 4.9, experience: 12, photo: '', schedule: 'Lun-Vie 14:00-20:00', available: true },
+  { id: 3, name: 'Dr. Roberto Gómez', specialtyId: 1, specialty: 'Cardiología', rating: 4.6, experience: 20, photo: '', schedule: 'Mar-Sáb 8:00-14:00', available: false },
+  { id: 4, name: 'Dra. Laura Castillo', specialtyId: 1, specialty: 'Cardiología', rating: 4.7, experience: 8, photo: '', schedule: 'Lun-Vie 10:00-18:00', available: true },
+  { id: 5, name: 'Dr. Miguel Ángel Ruiz', specialtyId: 2, specialty: 'Pediatría', rating: 4.9, experience: 18, photo: '', schedule: 'Lun-Vie 8:00-16:00', available: true },
+  { id: 6, name: 'Dra. Sofía Hernández', specialtyId: 2, specialty: 'Pediatría', rating: 4.8, experience: 10, photo: '', schedule: 'Lun-Vie 9:00-17:00', available: true },
+  { id: 7, name: 'Dr. Luis Torres', specialtyId: 2, specialty: 'Pediatría', rating: 4.5, experience: 25, photo: '', schedule: 'Mar-Sáb 8:00-14:00', available: false },
+  { id: 8, name: 'Dra. Mariana Flores', specialtyId: 2, specialty: 'Pediatría', rating: 4.7, experience: 6, photo: '', schedule: 'Lun-Vie 14:00-20:00', available: true },
+  { id: 9, name: 'Dr. Fernando Ortega', specialtyId: 3, specialty: 'Traumatología', rating: 4.6, experience: 14, photo: '', schedule: 'Lun-Vie 8:00-15:00', available: true },
+  { id: 10, name: 'Dra. Patricia Vega', specialtyId: 3, specialty: 'Traumatología', rating: 4.8, experience: 11, photo: '', schedule: 'Lun-Vie 10:00-18:00', available: true },
+  { id: 11, name: 'Dr. Jorge Navarro', specialtyId: 3, specialty: 'Traumatología', rating: 4.4, experience: 22, photo: '', schedule: 'Mar-Sáb 9:00-15:00', available: false },
+  { id: 12, name: 'Dr. Ricardo Delgado', specialtyId: 4, specialty: 'Neurología', rating: 4.9, experience: 16, photo: '', schedule: 'Lun-Vie 8:00-14:00', available: true },
+  { id: 13, name: 'Dra. Elena Sandoval', specialtyId: 4, specialty: 'Neurología', rating: 4.7, experience: 9, photo: '', schedule: 'Lun-Vie 14:00-20:00', available: true },
+  { id: 14, name: 'Dr. Hugo Paredes', specialtyId: 4, specialty: 'Neurología', rating: 4.5, experience: 19, photo: '', schedule: 'Mar-Sáb 8:00-14:00', available: false },
+  { id: 15, name: 'Dra. Carmen Ríos', specialtyId: 5, specialty: 'Dermatología', rating: 4.8, experience: 13, photo: '', schedule: 'Lun-Vie 9:00-17:00', available: true },
+  { id: 16, name: 'Dr. Alberto Luna', specialtyId: 5, specialty: 'Dermatología', rating: 4.6, experience: 7, photo: '', schedule: 'Lun-Vie 8:00-16:00', available: true },
+  { id: 17, name: 'Dra. Gabriela Soto', specialtyId: 5, specialty: 'Dermatología', rating: 4.9, experience: 10, photo: '', schedule: 'Mar-Sáb 10:00-18:00', available: false },
+  { id: 18, name: 'Dr. Diego Vargas', specialtyId: 5, specialty: 'Dermatología', rating: 4.5, experience: 21, photo: '', schedule: 'Lun-Vie 8:00-14:00', available: true },
+  { id: 19, name: 'Dr. Arturo Molina', specialtyId: 6, specialty: 'Oftalmología', rating: 4.7, experience: 14, photo: '', schedule: 'Lun-Vie 8:00-15:00', available: true },
+  { id: 20, name: 'Dra. Lucía Campos', specialtyId: 6, specialty: 'Oftalmología', rating: 4.8, experience: 9, photo: '', schedule: 'Lun-Vie 10:00-18:00', available: true },
+  { id: 21, name: 'Dr. Andrés Salazar', specialtyId: 6, specialty: 'Oftalmología', rating: 4.6, experience: 17, photo: '', schedule: 'Mar-Sáb 9:00-15:00', available: false },
+  { id: 22, name: 'Dr. José Luis García', specialtyId: 7, specialty: 'Medicina General', rating: 4.7, experience: 20, photo: '', schedule: 'Lun-Vie 7:00-15:00', available: true },
+  { id: 23, name: 'Dra. María Jiménez', specialtyId: 7, specialty: 'Medicina General', rating: 4.8, experience: 8, photo: '', schedule: 'Lun-Vie 9:00-17:00', available: true },
+  { id: 24, name: 'Dr. Pablo Sánchez', specialtyId: 7, specialty: 'Medicina General', rating: 4.5, experience: 14, photo: '', schedule: 'Lun-Vie 14:00-20:00', available: true },
+  { id: 25, name: 'Dra. Rosa Palacios', specialtyId: 7, specialty: 'Medicina General', rating: 4.9, experience: 6, photo: '', schedule: 'Mar-Sáb 8:00-14:00', available: true },
+  { id: 26, name: 'Dr. Fernando Rivas', specialtyId: 7, specialty: 'Medicina General', rating: 4.6, experience: 12, photo: '', schedule: 'Lun-Vie 10:00-18:00', available: false },
+]
+
+export const appointmentsData = [
+  { id: 1, patientId: 2, patientName: 'Juan Pérez', doctorId: 1, doctorName: 'Dr. Carlos Mendoza', specialty: 'Cardiología', date: '2026-08-05', time: '10:00', status: 'Confirmada' },
+  { id: 2, patientId: 2, patientName: 'Juan Pérez', doctorId: 5, doctorName: 'Dr. Miguel Ángel Ruiz', specialty: 'Pediatría', date: '2026-07-28', time: '09:00', status: 'Pendiente' },
+  { id: 3, patientId: 2, patientName: 'Juan Pérez', doctorId: 15, doctorName: 'Dra. Carmen Ríos', specialty: 'Dermatología', date: '2026-07-15', time: '14:30', status: 'Finalizada' },
+  { id: 4, patientId: 2, patientName: 'Juan Pérez', doctorId: 22, doctorName: 'Dr. José Luis García', specialty: 'Medicina General', date: '2026-07-10', time: '08:00', status: 'Cancelada' },
+  { id: 5, patientId: 1, patientName: 'Admin MediCitas', doctorId: 1, doctorName: 'Dr. Carlos Mendoza', specialty: 'Cardiología', date: '2026-08-10', time: '11:00', status: 'Pendiente' },
+]
