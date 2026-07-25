@@ -7,7 +7,7 @@ export default function AuthLayout() {
   const { user } = useAuth()
   if (user) return <Navigate to="/" replace />
   return (
-    <Box minHeight="100vh" display="flex" alignItems="center" sx={{ bgcolor: 'background.default' }}>
+    <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', bgcolor: 'background.default' }}>
       <Container maxWidth="sm">
         <Box textAlign="center" mb={4}>
           <LocalHospitalIcon sx={{ fontSize: 56, color: 'primary.main' }} />

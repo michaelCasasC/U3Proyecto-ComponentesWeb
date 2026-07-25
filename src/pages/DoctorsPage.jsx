@@ -34,12 +34,12 @@ export default function DoctorsPage() {
       </Box>
       <Grid container spacing={3}>
         {filtered.map(doc => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={doc.id}>
+          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={doc.id}>
             <DoctorCard doctor={doc} />
           </Grid>
         ))}
         {filtered.length === 0 && (
-          <Grid item xs={12}><Typography color="text.secondary" textAlign="center" py={8}>No se encontraron médicos</Typography></Grid>
+          <Grid size={{ xs: 12 }}><Typography color="text.secondary" textAlign="center" py={8}>No se encontraron médicos</Typography></Grid>
         )}
       </Grid>
     </Box>

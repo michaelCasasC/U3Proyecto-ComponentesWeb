@@ -25,13 +25,13 @@ export default function AppointmentsPage() {
       <Breadcrumb />
       <PageHeader title="Agendar Cita" subtitle="Selecciona fecha, médico y horario para tu consulta" />
       <Grid container spacing={3}>
-        <Grid item xs={12} md={7}>
+        <Grid size={{ xs: 12, md: 7 }}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" fontWeight={600} mb={2}>Datos de la Cita</Typography>
             <AppointmentForm doctors={doctors} specialties={specialties} selectedDoctor={location.state?.doctor} onSubmit={handleSubmit} />
           </Paper>
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <Calendar selectedDate={selectedDate} onDateSelect={setSelectedDate} />
         </Grid>
       </Grid>

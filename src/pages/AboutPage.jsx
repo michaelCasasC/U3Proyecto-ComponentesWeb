@@ -29,7 +29,7 @@ export default function AboutPage() {
       </Paper>
       <Grid container spacing={3}>
         {features.map((f, i) => (
-          <Grid item xs={12} sm={6} key={i}>
+          <Grid size={{ xs: 12, sm: 6 }} key={i}>
             <Card sx={{ textAlign: 'center', py: 3 }}>
               <CardContent>
                 <f.icon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />

@@ -30,13 +30,13 @@ export default function AppointmentForm({ doctors, specialties, selectedDoctor, 
   return (
     <Box component="form" onSubmit={handleSubmit}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <CustomTextField select label="Especialidad" value={form.specialty} onChange={(e) => setForm(prev => ({ ...prev, specialty: e.target.value }))} icon={MedicalServicesIcon}>
             <MenuItem value="">Seleccionar especialidad</MenuItem>
             {specialties.map(s => <MenuItem key={s.id} value={s.name}>{s.name}</MenuItem>)}
           </CustomTextField>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <CustomTextField select label="Médico" value={form.doctorId} onChange={(e) => handleChange('doctorId', e.target.value)} icon={PersonIcon}>
             <MenuItem value="">Seleccionar médico</MenuItem>
             {doctors.filter(d => !form.specialty || d.specialty === form.specialty).map(d => (
@@ -44,16 +44,16 @@ export default function AppointmentForm({ doctors, specialties, selectedDoctor, 
             ))}
           </CustomTextField>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <CustomTextField type="date" label="Fecha" value={form.date} onChange={(e) => handleChange('date', e.target.value)} icon={EventIcon} InputLabelProps={{ shrink: true }} />
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CustomTextField type="date" label="Fecha" value={form.date} onChange={(e) => handleChange('date', e.target.value)} icon={EventIcon} slotProps={{ inputLabel: { shrink: true } }} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <CustomTextField select label="Horario" value={form.time} onChange={(e) => handleChange('time', e.target.value)} icon={AccessTimeIcon}>
             <MenuItem value="">Seleccionar horario</MenuItem>
             {timeSlots.map(t => <MenuItem key={t} value={t}>{t}</MenuItem>)}
           </CustomTextField>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <CustomButton type="submit" fullWidth disabled={!form.doctorId || !form.date || !form.time}>
             Solicitar Cita
           </CustomButton>

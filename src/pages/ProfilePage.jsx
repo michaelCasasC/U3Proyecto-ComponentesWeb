@@ -23,13 +23,13 @@ export default function ProfilePage() {
         </Box>
         <Divider sx={{ mb: 3 }} />
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Box display="flex" alignItems="center" gap={1}>
               <EmailIcon color="action" />
               <Typography variant="body1">{user?.email}</Typography>
             </Box>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Box display="flex" alignItems="center" gap={1}>
               <BadgeIcon color="action" />
               <Typography variant="body1">ID: {user?.id}</Typography>

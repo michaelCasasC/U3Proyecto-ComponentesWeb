@@ -9,8 +9,10 @@ export default function SearchBar({ value, onChange, placeholder = 'Buscar...', 
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      InputProps={{
-        startAdornment: <InputAdornment position="start"><SearchIcon color="action" /></InputAdornment>,
+      slotProps={{
+        input: {
+          startAdornment: <InputAdornment position="start"><SearchIcon color="action" /></InputAdornment>,
+        },
       }}
       sx={{ maxWidth: 400 }}
       {...props}

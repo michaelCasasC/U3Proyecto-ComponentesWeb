@@ -14,7 +14,7 @@ export default function StatisticsCards({ stats }) {
   ]
 
   return (
-    <Box display="grid" gridTemplateColumns={{ xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }} gap={3}>
+    <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }, gap: 3 }}>
       {cards.map(card => <DashboardCards key={card.title} {...card} />)}
     </Box>
   )

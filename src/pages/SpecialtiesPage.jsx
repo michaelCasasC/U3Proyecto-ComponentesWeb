@@ -15,9 +15,9 @@ export default function SpecialtiesPage() {
       <Breadcrumb />
       <PageHeader title="Especialidades Médicas" subtitle="Selecciona una especialidad para ver los médicos disponibles" />
       <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar especialidad..." />
-      <Grid container spacing={3} mt={1}>
+      <Grid container spacing={3}>
         {filtered.map(s => (
-          <Grid item xs={12} sm={6} md={4} key={s.id}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={s.id}>
             <SpecialtyCard specialty={s} />
           </Grid>
         ))}

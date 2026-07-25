@@ -11,7 +11,7 @@ export default function AdminLayout() {
   if (!user) return <Navigate to="/login" replace />
   if (!isAdmin) return <Navigate to="/" replace />
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
       <Box display="flex" flexGrow={1}>
         <Sidebar open={true} />

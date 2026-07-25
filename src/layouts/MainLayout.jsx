@@ -7,7 +7,7 @@ import NotificationSnackbar from '../components/common/NotificationSnackbar'
 
 export default function MainLayout() {
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
       <Box display="flex" flexGrow={1}>
         <Sidebar open={true} />
