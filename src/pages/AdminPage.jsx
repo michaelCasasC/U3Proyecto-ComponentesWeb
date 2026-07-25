@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { Box, Typography, Paper, Tabs, Tab, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, MenuItem } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import Breadcrumb from '../components/common/Breadcrumb'
@@ -75,7 +75,7 @@ export default function AdminPage() {
     { field: 'date', headerName: 'Fecha', width: 120 },
     { field: 'time', headerName: 'Hora', width: 100 },
     { field: 'status', headerName: 'Estado', width: 130, renderCell: (params) => (
-      <Typography variant="body2" color={`${statusColors[params.value]}.main`} fontWeight={600}>{params.value}</Typography>
+      <Typography variant="body2" sx={{ color: `${statusColors[params.value]}.main`, fontWeight: 600 }}>{params.value}</Typography>
     )},
   ]
 
