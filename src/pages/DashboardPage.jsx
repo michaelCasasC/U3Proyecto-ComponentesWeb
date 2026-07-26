@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Box, Grid, Typography, Paper, Avatar } from '@mui/material'
 import PeopleIcon from '@mui/icons-material/People'
 import { useAuth } from '../context/AuthContext'
@@ -5,10 +6,18 @@ import { useAppointments } from '../context/AppointmentsContext'
 import StatisticsCards from '../components/dashboard/StatisticsCards'
 import Breadcrumb from '../components/common/Breadcrumb'
 import AppointmentCard from '../components/appointments/AppointmentCard'
+import { api } from '../services/api'
 
 export default function DashboardPage() {
   const { user } = useAuth()
   const { appointments, cancelAppointment } = useAppointments()
+  const [catalogStats, setCatalogStats] = useState({ specialties: 0, availableDoctors: 0 })
+
+  useEffect(() => {
+    Promise.all([api.getSpecialties(), api.getDoctors()]).then(([specialties, doctors]) => {
+      setCatalogStats({ specialties: specialties.length, availableDoctors: doctors.filter(doctor => doctor.available).length })
+    })
+  }, [])
 
   const userAppointments = appointments.filter(a => a.patientId === user?.id)
   const now = new Date()
@@ -17,8 +26,8 @@ export default function DashboardPage() {
   const stats = {
     scheduled: userAppointments.filter(a => a.status === 'Pendiente' || a.status === 'Confirmada').length,
     upcoming: upcoming.length,
-    specialties: 7,
-    availableDoctors: 18,
+    specialties: catalogStats.specialties,
+    availableDoctors: catalogStats.availableDoctors,
   }
 
   return (

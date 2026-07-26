@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Typography, Paper, Tabs, Tab, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, MenuItem } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import Breadcrumb from '../components/common/Breadcrumb'
 import PageHeader from '../components/common/PageHeader'
 import ConfirmationDialog from '../components/common/ConfirmationDialog'
-import { doctorsData, specialtiesData, appointmentsData } from '../data/mockData'
 import { useAppointments } from '../context/AppointmentsContext'
 import { useNotification } from '../context/NotificationContext'
+import { api } from '../services/api'
 
 const statusColors = {
   Pendiente: 'warning',
@@ -24,6 +24,22 @@ export default function AdminPage() {
   const [dialog, setDialog] = useState({ open: false, mode: 'add', data: null })
   const [confirmDelete, setConfirmDelete] = useState({ open: false, data: null })
   const [formData, setFormData] = useState({})
+  const [doctorsData, setDoctorsData] = useState([])
+  const [specialtiesData, setSpecialtiesData] = useState([])
+  const [patientsData, setPatientsData] = useState([])
+
+  const loadAdminData = async () => {
+    try {
+      const [doctorRows, specialtyRows, patientRows] = await Promise.all([api.getDoctors(), api.getSpecialties(), api.getUsers()])
+      setDoctorsData(doctorRows)
+      setSpecialtiesData(specialtyRows)
+      setPatientsData(patientRows)
+    } catch (error) {
+      showNotification(error.message, 'error')
+    }
+  }
+
+  useEffect(() => { loadAdminData() }, [])
 
   const handleEdit = (row) => {
     setFormData(row)
@@ -34,14 +50,40 @@ export default function AdminPage() {
     setConfirmDelete({ open: true, data: row })
   }
 
-  const confirmDeleteAction = () => {
-    showNotification(`${confirmDelete.data?.name || confirmDelete.data?.patientName || 'Registro'} eliminado`, 'success')
-    setConfirmDelete({ open: false, data: null })
+  const confirmDeleteAction = async () => {
+    try {
+      const id = confirmDelete.data?.id
+      if (tab === 0) await api.deleteDoctor(id)
+      if (tab === 1) await api.deleteSpecialty(id)
+      if (tab === 2) await api.deleteUser(id)
+      if (tab === 3) await api.deleteAppointment(id)
+      await loadAdminData()
+      showNotification(`${confirmDelete.data?.name || confirmDelete.data?.patientName || 'Registro'} eliminado`, 'success')
+      setConfirmDelete({ open: false, data: null })
+    } catch (error) {
+      showNotification(error.message, 'error')
+    }
   }
 
-  const handleSave = () => {
-    showNotification(dialog.mode === 'add' ? 'Registro creado' : 'Registro actualizado', 'success')
-    setDialog({ open: false, data: null })
+  const handleSave = async () => {
+    try {
+      if (tab === 0) {
+        const specialtyId = formData.specialtyId || specialtiesData.find(item => item.name === (formData.description || formData.specialty))?.id || specialtiesData[0]?.id
+        const payload = { ...formData, specialtyId }
+        if (dialog.mode === 'add') await api.createDoctor(payload)
+        else await api.updateDoctor(formData.id, payload)
+      } else if (tab === 1) {
+        if (dialog.mode === 'add') await api.createSpecialty(formData)
+        else await api.updateSpecialty(formData.id, formData)
+      } else {
+        throw new Error('Este registro se gestiona desde su flujo correspondiente.')
+      }
+      await loadAdminData()
+      showNotification(dialog.mode === 'add' ? 'Registro creado' : 'Registro actualizado', 'success')
+      setDialog({ open: false, data: null })
+    } catch (error) {
+      showNotification(error.message, 'error')
+    }
   }
 
   const doctorColumns = [
@@ -77,11 +119,6 @@ export default function AdminPage() {
     { field: 'status', headerName: 'Estado', width: 130, renderCell: (params) => (
       <Typography variant="body2" sx={{ color: `${statusColors[params.value]}.main`, fontWeight: 600 }}>{params.value}</Typography>
     )},
-  ]
-
-  const patientsData = [
-    { id: 1, name: 'Admin MediCitas', email: 'admin@medicitas.com', role: 'Administrador' },
-    { id: 2, name: 'Juan Pérez', email: 'juan@example.com', role: 'Paciente' },
   ]
 
   const getRows = () => {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import DoctorCard from '../components/doctors/DoctorCard'
@@ -6,12 +6,21 @@ import SearchBar from '../components/common/SearchBar'
 import FilterPanel from '../components/common/FilterPanel'
 import Breadcrumb from '../components/common/Breadcrumb'
 import PageHeader from '../components/common/PageHeader'
-import { doctors, specialties } from '../services/api'
+import { api } from '../services/api'
 
 export default function DoctorsPage() {
   const { id } = useParams()
   const [search, setSearch] = useState('')
   const [filters, setFilters] = useState({ specialty: '', available: '' })
+  const [doctors, setDoctors] = useState([])
+  const [specialties, setSpecialties] = useState([])
+
+  useEffect(() => {
+    Promise.all([api.getDoctors(), api.getSpecialties()]).then(([doctorRows, specialtyRows]) => {
+      setDoctors(doctorRows)
+      setSpecialties(specialtyRows)
+    })
+  }, [])
 
   const filtered = useMemo(() => {
     let result = doctors

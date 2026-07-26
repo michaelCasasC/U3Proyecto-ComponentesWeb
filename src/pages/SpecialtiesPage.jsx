@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import SpecialtyCard from '../components/doctors/SpecialtyCard'
 import SearchBar from '../components/common/SearchBar'
 import Breadcrumb from '../components/common/Breadcrumb'
 import PageHeader from '../components/common/PageHeader'
-import { specialties } from '../services/api'
+import { api } from '../services/api'
 
 export default function SpecialtiesPage() {
   const [search, setSearch] = useState('')
+  const [specialties, setSpecialties] = useState([])
+  useEffect(() => { api.getSpecialties().then(setSpecialties) }, [])
   const filtered = specialties.filter(s => s.name.toLowerCase().includes(search.toLowerCase()))
 
   return (
