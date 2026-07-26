@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { TextField, InputAdornment } from '@mui/material'
 
 export default function CustomTextField({ label, icon: Icon, error, helperText, slotProps: externalSlotProps, ...props }) {
   return (
@@ -12,7 +12,11 @@ export default function CustomTextField({ label, icon: Icon, error, helperText, 
         ...externalSlotProps,
         input: {
           ...externalSlotProps?.input,
-          startAdornment: Icon ? <Icon sx={{ mr: 1, color: 'action.active' }} /> : undefined,
+          startAdornment: Icon ? (
+            <InputAdornment position="start">
+              <Icon sx={{ color: 'action.active' }} />
+            </InputAdornment>
+          ) : undefined,
         },
       }}
       sx={{ mb: 2 }}

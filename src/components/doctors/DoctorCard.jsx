@@ -19,24 +19,24 @@ export default function DoctorCard({ doctor }) {
         {fav ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
       </IconButton>
       <CardContent sx={{ flexGrow: 1, pt: 3 }}>
-        <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
           <Avatar name={doctor.name} size={80} />
-          <Typography variant="h6" fontWeight={600} mt={1}>{doctor.name}</Typography>
+          <Typography variant="h6" fontWeight={600} sx={{ mt: 1 }}>{doctor.name}</Typography>
           <Chip label={doctor.specialty} size="small" color="primary" variant="outlined" sx={{ mt: 0.5 }} />
         </Box>
-        <Box display="flex" alignItems="center" gap={1} mb={0.5}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
           <StarIcon fontSize="small" color="warning" />
           <Typography variant="body2">{doctor.rating} / 5.0</Typography>
         </Box>
-        <Box display="flex" alignItems="center" gap={1} mb={0.5}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
           <WorkIcon fontSize="small" color="action" />
           <Typography variant="body2" color="text.secondary">{doctor.experience} años de experiencia</Typography>
         </Box>
-        <Box display="flex" alignItems="center" gap={1}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <AccessTimeIcon fontSize="small" color="action" />
           <Typography variant="body2" color="text.secondary">{doctor.schedule}</Typography>
         </Box>
-        <Box mt={1}>
+        <Box sx={{ mt: 1 }}>
           <Chip label={doctor.available ? 'Disponible' : 'No disponible'} size="small" color={doctor.available ? 'success' : 'default'} />
         </Box>
       </CardContent>

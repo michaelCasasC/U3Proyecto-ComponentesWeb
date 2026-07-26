@@ -30,7 +30,7 @@ export default function PwaInstallPrompt() {
   return (
     <Paper sx={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 9999, p: 2, display: 'flex', alignItems: 'center', gap: 2, boxShadow: 6, borderRadius: 3, maxWidth: 400 }}>
       <InstallMobileIcon color="primary" sx={{ fontSize: 40 }} />
-      <Box flexGrow={1}>
+      <Box sx={{ flexGrow: 1 }}>
         <Typography variant="subtitle2" fontWeight={600}>Instalar MediCitas</Typography>
         <Typography variant="caption" color="text.secondary">Agrega a tu pantalla de inicio</Typography>
       </Box>

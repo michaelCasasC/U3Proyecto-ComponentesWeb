@@ -45,7 +45,7 @@ export default function Navbar({ onMenuToggle }) {
             MediCitas
           </Typography>
           {!isMobile && (
-            <Box display="flex" ml={4} gap={1}>
+            <Box sx={{ display: 'flex', ml: 4, gap: 1 }}>
               {navItems.map(item => (
                 <Typography key={item.path} component={RouterLink} to={item.path}
                   sx={{ textDecoration: 'none', color: 'text.secondary', px: 1.5, py: 0.5, borderRadius: 1, '&:hover': { bgcolor: 'action.hover', color: 'primary.main' } }}>
@@ -54,7 +54,7 @@ export default function Navbar({ onMenuToggle }) {
               ))}
             </Box>
           )}
-          <Box flexGrow={1} />
+          <Box sx={{ flexGrow: 1 }} />
           <IconButton onClick={toggleTheme} color="inherit"><LightModeIcon /></IconButton>
           <IconButton onClick={(e) => setNotifAnchor(e.currentTarget)} color="inherit">
             <Badge badgeContent={3} color="error"><NotificationsIcon /></Badge>

@@ -21,11 +21,11 @@ export default function AboutPage() {
       <Paper sx={{ p: 4, mb: 4, textAlign: 'center' }}>
         <LocalHospitalIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
         <Typography variant="h4" fontWeight={700} gutterBottom>MediCitas</Typography>
-        <Typography variant="body1" color="text.secondary" maxWidth={600} mx="auto">
+        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
           MediCitas es una plataforma digital que conecta pacientes con profesionales de la salud,
           facilitando la gestión de citas médicas de manera eficiente y moderna.
         </Typography>
-        <Typography variant="body2" color="text.secondary" mt={2}>Versión 1.0.0</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>Versión 1.0.0</Typography>
       </Paper>
       <Grid container spacing={3}>
         {features.map((f, i) => (
