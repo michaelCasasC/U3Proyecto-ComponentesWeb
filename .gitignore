@@ -4,5 +4,8 @@ dist
 *.local
 .env
 .env.*
+!.env.example
+!backend/.env.example
 .DS_Store
 *.log
+backend/.env
