@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.svg'],
+      includeAssets: ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'icons/*.svg'],
       manifest: {
         name: 'MediCitas',
         short_name: 'MediCitas',
@@ -18,6 +18,8 @@ export default defineConfig({
         scope: '/',
         start_url: '/',
         icons: [
+          { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+          { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
           { src: '/icons/icon-192x192.svg', sizes: '192x192', type: 'image/svg+xml' },
           { src: '/icons/icon-512x512.svg', sizes: '512x512', type: 'image/svg+xml' }
         ]

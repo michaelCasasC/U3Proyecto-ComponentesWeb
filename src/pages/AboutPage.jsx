@@ -19,7 +19,7 @@ export default function AboutPage() {
       <Breadcrumb />
       <PageHeader title="Acerca de MediCitas" subtitle="Plataforma moderna para la gestión de citas médicas" />
       <Paper sx={{ p: 4, mb: 4, textAlign: 'center' }}>
-        <LocalHospitalIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+        <Box component="img" src="/android-chrome-512x512.png" alt="MediCitas Logo" sx={{ width: 96, height: 96, mb: 2, borderRadius: 3 }} />
         <Typography variant="h4" fontWeight={700} gutterBottom>MediCitas</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
           MediCitas es una plataforma digital que conecta pacientes con profesionales de la salud,
