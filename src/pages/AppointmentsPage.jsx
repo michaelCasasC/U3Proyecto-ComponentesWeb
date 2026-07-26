@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Grid, Paper, Typography } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { useAppointments } from '../context/AppointmentsContext'
@@ -7,17 +7,30 @@ import AppointmentForm from '../components/appointments/AppointmentForm'
 import Calendar from '../components/appointments/Calendar'
 import Breadcrumb from '../components/common/Breadcrumb'
 import PageHeader from '../components/common/PageHeader'
-import { doctors, specialties } from '../services/api'
+import { api } from '../services/api'
 
 export default function AppointmentsPage() {
   const location = useLocation()
   const { addAppointment } = useAppointments()
   const { showNotification } = useNotification()
   const [selectedDate, setSelectedDate] = useState(location.state?.date || '')
+  const [doctors, setDoctors] = useState([])
+  const [specialties, setSpecialties] = useState([])
 
-  const handleSubmit = (data) => {
-    addAppointment({ ...data, date: selectedDate || data.date })
-    showNotification('Cita solicitada exitosamente', 'success')
+  useEffect(() => {
+    Promise.all([api.getDoctors(), api.getSpecialties()]).then(([doctorRows, specialtyRows]) => {
+      setDoctors(doctorRows)
+      setSpecialties(specialtyRows)
+    })
+  }, [])
+
+  const handleSubmit = async (data) => {
+    try {
+      await addAppointment({ ...data, date: selectedDate || data.date })
+      showNotification('Cita solicitada exitosamente', 'success')
+    } catch (error) {
+      showNotification(error.message, 'error')
+    }
   }
 
   return (
@@ -28,7 +41,7 @@ export default function AppointmentsPage() {
         <Grid size={{ xs: 12, md: 7 }}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" fontWeight={600} mb={2}>Datos de la Cita</Typography>
-            <AppointmentForm doctors={doctors} specialties={specialties} selectedDoctor={location.state?.doctor} onSubmit={handleSubmit} />
+            <AppointmentForm doctors={doctors} specialties={specialties} selectedDoctor={location.state?.doctor} selectedDate={selectedDate} onSubmit={handleSubmit} />
           </Paper>
         </Grid>
         <Grid size={{ xs: 12, md: 5 }}>

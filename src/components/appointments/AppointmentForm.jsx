@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Grid, MenuItem } from '@mui/material'
 import CustomTextField from '../common/CustomTextField'
 import CustomButton from '../common/CustomButton'
@@ -9,8 +9,12 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices'
 
 const timeSlots = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30']
 
-export default function AppointmentForm({ doctors, specialties, selectedDoctor, onSubmit }) {
+export default function AppointmentForm({ doctors, specialties, selectedDoctor, selectedDate, onSubmit }) {
   const [form, setForm] = useState({ doctorId: selectedDoctor?.id || '', specialty: selectedDoctor?.specialty || '', date: '', time: '' })
+
+  useEffect(() => {
+    if (selectedDate) setForm(prev => ({ ...prev, date: selectedDate }))
+  }, [selectedDate])
 
   const handleChange = (field, value) => {
     if (field === 'doctorId') {
@@ -21,10 +25,10 @@ export default function AppointmentForm({ doctors, specialties, selectedDoctor, 
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const doctor = doctors.find(d => d.id === Number(form.doctorId))
-    onSubmit({ ...form, doctorName: doctor?.name, patientName: 'Paciente', patientId: 1, status: 'Pendiente' })
+    await onSubmit({ ...form, doctorName: doctor?.name })
   }
 
   return (
