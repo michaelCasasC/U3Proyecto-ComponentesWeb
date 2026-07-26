@@ -19,7 +19,7 @@ export default function RegisterForm({ onSubmit }) {
     if (password.length < 6) { setError('La contraseña debe tener al menos 6 caracteres'); return }
     setError('')
     await new Promise(r => setTimeout(r, 500))
-    onSubmit(name, email, password)
+    await onSubmit(name, email, password)
   }
 
   return (

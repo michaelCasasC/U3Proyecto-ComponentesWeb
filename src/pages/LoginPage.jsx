@@ -9,8 +9,8 @@ export default function LoginPage() {
   const navigate = useNavigate()
   const [error, setError] = useState('')
 
-  const handleLogin = (email, password) => {
-    const result = login(email, password)
+  const handleLogin = async (email, password) => {
+    const result = await login(email, password)
     if (result.success) navigate('/')
     else setError(result.error)
   }
@@ -28,7 +28,7 @@ export default function LoginPage() {
       </Box>
       <Box mt={2} p={2} bgcolor="action.hover" borderRadius={2}>
         <Typography variant="caption" color="text.secondary">
-          <strong>Demo:</strong> admin@medicitas.com / admin123 (Admin) | juan@example.com / 123456 (Paciente)
+          <strong>Demo:</strong> jefferson.mejia@gmail.com / admin123 (Admin) | andrea.cedeno@gmail.com / 123456 (Paciente)
         </Typography>
       </Box>
     </Paper>

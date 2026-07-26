@@ -10,8 +10,8 @@ export default function RegisterPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const handleRegister = (name, email, password) => {
-    const result = register(name, email, password)
+  const handleRegister = async (name, email, password) => {
+    const result = await register(name, email, password)
     if (result.success) { setSuccess(true); setTimeout(() => navigate('/login'), 2000) }
     else setError(result.error)
   }

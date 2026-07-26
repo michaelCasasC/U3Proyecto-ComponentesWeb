@@ -1,11 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { api } from '../services/api'
 
 const AuthContext = createContext()
-
-const MOCK_USERS = [
-  { id: 1, name: 'Admin MediCitas', email: 'admin@medicitas.com', password: 'admin123', role: 'admin', avatar: '' },
-  { id: 2, name: 'Juan Pérez', email: 'juan@example.com', password: '123456', role: 'patient', avatar: '' },
-]
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
@@ -13,28 +9,37 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('user')
-    if (saved) setUser(JSON.parse(saved))
+    if (saved && localStorage.getItem('token')) {
+      try { setUser(JSON.parse(saved)) } catch { localStorage.removeItem('user') }
+    }
     setLoading(false)
   }, [])
 
-  const login = (email, password) => {
-    const found = MOCK_USERS.find(u => u.email === email && u.password === password)
-    if (!found) return { success: false, error: 'Credenciales inválidas' }
-    const userData = { id: found.id, name: found.name, email: found.email, role: found.role, avatar: found.avatar }
-    setUser(userData)
-    localStorage.setItem('user', JSON.stringify(userData))
-    return { success: true }
+  const login = async (email, password) => {
+    try {
+      const { usuario, token } = await api.login(email, password)
+      setUser(usuario)
+      localStorage.setItem('user', JSON.stringify(usuario))
+      localStorage.setItem('token', token)
+      return { success: true }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
   }
 
-  const register = (name, email, password) => {
-    const exists = MOCK_USERS.find(u => u.email === email)
-    if (exists) return { success: false, error: 'El email ya está registrado' }
-    return { success: true }
+  const register = async (name, email, password) => {
+    try {
+      await api.register(name, email, password)
+      return { success: true }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
   }
 
   const logout = () => {
     setUser(null)
     localStorage.removeItem('user')
+    localStorage.removeItem('token')
   }
 
   return (

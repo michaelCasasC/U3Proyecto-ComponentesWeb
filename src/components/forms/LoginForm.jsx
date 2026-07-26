@@ -14,7 +14,7 @@ export default function LoginForm({ onSubmit }) {
     e.preventDefault()
     setLoading(true)
     await new Promise(r => setTimeout(r, 500))
-    onSubmit(email, password)
+    await onSubmit(email, password)
     setLoading(false)
   }
 
