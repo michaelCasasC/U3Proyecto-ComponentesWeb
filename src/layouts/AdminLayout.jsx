@@ -13,9 +13,9 @@ export default function AdminLayout() {
   return (
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-      <Box display="flex" flexGrow={1}>
+      <Box sx={{ display: 'flex', flexGrow: 1 }}>
         <Sidebar open={true} />
-        <Box component="main" flexGrow={1} sx={{ p: 3, bgcolor: 'background.default', minHeight: '100vh' }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default', minHeight: '100vh' }}>
           <Toolbar />
           <Outlet />
         </Box>

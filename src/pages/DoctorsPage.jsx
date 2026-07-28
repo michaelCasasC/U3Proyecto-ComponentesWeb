@@ -37,7 +37,7 @@ export default function DoctorsPage() {
     <Box>
       <Breadcrumb />
       <PageHeader title={specialtyName} subtitle={filtered.length > 0 ? `${filtered.length} médicos disponibles` : 'No se encontraron médicos'} />
-      <Box display="flex" gap={2} flexWrap="wrap" mb={3}>
+      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 3 }}>
         <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar médico..." />
         <FilterPanel filters={filters} onFilterChange={(key, val) => setFilters(prev => ({ ...prev, [key]: val }))} specialties={specialties} />
       </Box>
@@ -48,7 +48,7 @@ export default function DoctorsPage() {
           </Grid>
         ))}
         {filtered.length === 0 && (
-          <Grid size={{ xs: 12 }}><Typography color="text.secondary" textAlign="center" py={8}>No se encontraron médicos</Typography></Grid>
+          <Grid size={{ xs: 12 }}><Typography color="text.secondary" sx={{ textAlign: 'center', py: 8 }}>No se encontraron médicos</Typography></Grid>
         )}
       </Grid>
     </Box>

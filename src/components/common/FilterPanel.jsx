@@ -2,7 +2,7 @@ import { Box, FormControl, InputLabel, Select, MenuItem, Chip, OutlinedInput } f
 
 export default function FilterPanel({ filters, onFilterChange, specialties }) {
   return (
-    <Box display="flex" gap={2} flexWrap="wrap" mb={3}>
+    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 3 }}>
       <FormControl size="small" sx={{ minWidth: 200 }}>
         <InputLabel>Especialidad</InputLabel>
         <Select value={filters.specialty || ''} onChange={(e) => onFilterChange('specialty', e.target.value)} label="Especialidad">

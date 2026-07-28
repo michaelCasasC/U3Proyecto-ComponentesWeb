@@ -14,7 +14,7 @@ export default function ProfilePage() {
       <Breadcrumb />
       <PageHeader title="Mi Perfil" subtitle="Información personal de la cuenta" />
       <Paper sx={{ p: 4, maxWidth: 600 }}>
-        <Box display="flex" alignItems="center" gap={3} mb={4}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
           <Avatar name={user?.name} size={96} />
           <Box>
             <Typography variant="h5" fontWeight={600}>{user?.name}</Typography>
@@ -24,13 +24,13 @@ export default function ProfilePage() {
         <Divider sx={{ mb: 3 }} />
         <Grid container spacing={2}>
           <Grid size={{ xs: 12 }}>
-            <Box display="flex" alignItems="center" gap={1}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <EmailIcon color="action" />
               <Typography variant="body1">{user?.email}</Typography>
             </Box>
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <Box display="flex" alignItems="center" gap={1}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <BadgeIcon color="action" />
               <Typography variant="body1">ID: {user?.id}</Typography>
             </Box>
