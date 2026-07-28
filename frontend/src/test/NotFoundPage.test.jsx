@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { render } from './setup'
 import { describe, it, expect } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
 import NotFoundPage from '../pages/NotFoundPage'

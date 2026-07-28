@@ -1,13 +1,13 @@
-import { Chip } from '@mui/material'
+import { Badge } from '@mantine/core'
 
 const statusConfig = {
-  Pendiente: { color: 'warning', icon: 'Schedule' },
-  Confirmada: { color: 'info', icon: 'CheckCircle' },
-  Cancelada: { color: 'error', icon: 'Cancel' },
-  Finalizada: { color: 'success', icon: 'CheckCircle' },
+  Pendiente: { color: 'yellow' },
+  Confirmada: { color: 'blue' },
+  Cancelada: { color: 'red' },
+  Finalizada: { color: 'green' },
 }
 
 export default function ChipStatus({ status }) {
-  const config = statusConfig[status] || { color: 'default' }
-  return <Chip label={status} color={config.color} size="small" variant="outlined" />
+  const config = statusConfig[status] || { color: 'gray' }
+  return <Badge color={config.color} variant="outline" size="sm">{status}</Badge>
 }

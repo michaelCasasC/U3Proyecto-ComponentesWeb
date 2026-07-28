@@ -1,13 +1,13 @@
-import { Box, Typography } from '@mui/material'
+import { Group, Box, Text, Title } from '@mantine/core'
 
 export default function PageHeader({ title, subtitle, action }) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', mb: 3 }}>
+    <Group justify="space-between" align="center" mb="md" wrap="wrap">
       <Box>
-        <Typography variant="h4" fontWeight={700}>{title}</Typography>
-        {subtitle && <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>{subtitle}</Typography>}
+        <Title order={2} fw={700}>{title}</Title>
+        {subtitle && <Text size="sm" c="dimmed" mt={4}>{subtitle}</Text>}
       </Box>
       {action && <Box>{action}</Box>}
-    </Box>
+    </Group>
   )
 }

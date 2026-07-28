@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material'
-import InboxIcon from '@mui/icons-material/Inbox'
+import { Box, Text } from '@mantine/core'
+import { IconInbox } from '@tabler/icons-react'
 
-export default function EmptyState({ message = 'No hay datos disponibles', icon: Icon = InboxIcon }) {
+export default function EmptyState({ message = 'No hay datos disponibles', icon: Icon = IconInbox }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-      <Icon sx={{ fontSize: 64, color: 'text.disabled' }} />
-      <Typography variant="h6" color="text.secondary" mt={2}>{message}</Typography>
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+      <Icon size={64} color="var(--mantine-color-gray-5)" />
+      <Text c="dimmed" size="lg" mt="md">{message}</Text>
     </Box>
   )
 }

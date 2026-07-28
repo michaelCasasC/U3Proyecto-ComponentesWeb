@@ -1,6 +1,5 @@
-import { Box, Paper, Typography, Grid, Divider } from '@mui/material'
-import EmailIcon from '@mui/icons-material/Email'
-import BadgeIcon from '@mui/icons-material/Badge'
+import { Paper, Text, Group, Stack, Divider, Box } from '@mantine/core'
+import { IconMail, IconId } from '@tabler/icons-react'
 import { useAuth } from '../context/AuthContext'
 import Breadcrumb from '../components/common/Breadcrumb'
 import PageHeader from '../components/common/PageHeader'
@@ -13,29 +12,25 @@ export default function ProfilePage() {
     <Box>
       <Breadcrumb />
       <PageHeader title="Mi Perfil" subtitle="Información personal de la cuenta" />
-      <Paper sx={{ p: 4, maxWidth: 600 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
+      <Paper p="lg" style={{ maxWidth: 600 }}>
+        <Group gap="lg" mb="lg" align="center">
           <Avatar name={user?.name} size={96} />
           <Box>
-            <Typography variant="h5" fontWeight={600}>{user?.name}</Typography>
-            <Typography variant="body2" color="text.secondary">{user?.role === 'admin' ? 'Administrador' : 'Paciente'}</Typography>
+            <Text fw={600} size="xl">{user?.name}</Text>
+            <Text size="sm" c="dimmed">{user?.role === 'admin' ? 'Administrador' : 'Paciente'}</Text>
           </Box>
-        </Box>
-        <Divider sx={{ mb: 3 }} />
-        <Grid container spacing={2}>
-          <Grid size={{ xs: 12 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <EmailIcon color="action" />
-              <Typography variant="body1">{user?.email}</Typography>
-            </Box>
-          </Grid>
-          <Grid size={{ xs: 12 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <BadgeIcon color="action" />
-              <Typography variant="body1">ID: {user?.id}</Typography>
-            </Box>
-          </Grid>
-        </Grid>
+        </Group>
+        <Divider mb="md" />
+        <Stack gap="md">
+          <Group gap="sm">
+            <IconMail size={20} color="var(--mantine-color-gray-6)" />
+            <Text>{user?.email}</Text>
+          </Group>
+          <Group gap="sm">
+            <IconId size={20} color="var(--mantine-color-gray-6)" />
+            <Text>ID: {user?.id}</Text>
+          </Group>
+        </Stack>
       </Paper>
     </Box>
   )

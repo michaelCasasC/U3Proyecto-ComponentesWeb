@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Box, Button, Typography, Paper, IconButton } from '@mui/material'
-import InstallMobileIcon from '@mui/icons-material/InstallMobile'
-import CloseIcon from '@mui/icons-material/Close'
+import { Paper, Group, Text, Button, ActionIcon, Box } from '@mantine/core'
+import { IconDeviceMobile, IconX } from '@tabler/icons-react'
 
 export default function PwaInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null)
@@ -28,14 +27,30 @@ export default function PwaInstallPrompt() {
   if (!showPrompt) return null
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 9999, p: 2, display: 'flex', alignItems: 'center', gap: 2, boxShadow: 6, borderRadius: 3, maxWidth: 400 }}>
-      <Box component="img" src="/android-chrome-192x192.png" alt="MediCitas App Icon" sx={{ width: 44, height: 44, borderRadius: 2 }} />
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="subtitle2" fontWeight={600}>Instalar MediCitas</Typography>
-        <Typography variant="caption" color="text.secondary">Agrega a tu pantalla de inicio</Typography>
-      </Box>
-      <Button variant="contained" size="small" onClick={handleInstall}>Instalar</Button>
-      <IconButton size="small" onClick={() => setShowPrompt(false)}><CloseIcon fontSize="small" /></IconButton>
+    <Paper
+      style={{
+        position: 'fixed',
+        bottom: 24,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        padding: 16,
+        boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+        borderRadius: 24,
+        maxWidth: 400,
+      }}
+    >
+      <Group gap="md" align="center" wrap="nowrap">
+        <img src="/android-chrome-192x192.png" alt="MediCitas App Icon" style={{ width: 44, height: 44, borderRadius: 16 }} />
+        <Box style={{ flexGrow: 1 }}>
+          <Text fw={600} size="sm">Instalar MediCitas</Text>
+          <Text size="xs" c="dimmed">Agrega a tu pantalla de inicio</Text>
+        </Box>
+        <Button size="sm" onClick={handleInstall}>Instalar</Button>
+        <ActionIcon variant="subtle" size="sm" onClick={() => setShowPrompt(false)}>
+          <IconX size={16} />
+        </ActionIcon>
+      </Group>
     </Paper>
   )
 }

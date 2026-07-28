@@ -1,25 +1,13 @@
-import { TextField, InputAdornment } from '@mui/material'
+import { TextInput } from '@mantine/core'
 
-export default function CustomTextField({ label, icon: Icon, error, helperText, slotProps: externalSlotProps, ...props }) {
+export default function CustomTextField({ label, icon: Icon, error, helperText, ...props }) {
   return (
-    <TextField
-      fullWidth
+    <TextInput
       label={label}
-      variant="outlined"
       error={error}
-      helperText={helperText}
-      slotProps={{
-        ...externalSlotProps,
-        input: {
-          ...externalSlotProps?.input,
-          startAdornment: Icon ? (
-            <InputAdornment position="start">
-              <Icon sx={{ color: 'action.active' }} />
-            </InputAdornment>
-          ) : undefined,
-        },
-      }}
-      sx={{ mb: 2 }}
+      description={helperText}
+      leftSection={Icon ? <Icon size={18} /> : null}
+      mb="md"
       {...props}
     />
   )

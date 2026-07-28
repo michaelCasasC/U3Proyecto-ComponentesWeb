@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Paper, Typography, Link, Box, Alert, Chip, Divider, Button } from '@mui/material'
+import { Paper, Text, Anchor, Box, Alert, Divider, Button, Group, Badge } from '@mantine/core'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import LoginForm from '../components/forms/LoginForm'
 import { useAuth } from '../context/AuthContext'
-import KeyIcon from '@mui/icons-material/Key'
+import { IconKey } from '@tabler/icons-react'
 
 export default function LoginPage() {
   const { login } = useAuth()
@@ -21,54 +21,50 @@ export default function LoginPage() {
   }
 
   return (
-    <Paper sx={{ p: { xs: 3, sm: 4 }, borderRadius: 4, boxShadow: '0 10px 40px -10px rgba(0,0,0,0.1)' }}>
-      <Typography variant="h5" fontWeight={800} textAlign="center" sx={{ letterSpacing: '-0.01em', mb: 1 }}>
+    <Paper p={{ base: 'md', sm: 'lg' }} style={{ borderRadius: 32, boxShadow: '0 10px 40px -10px rgba(0,0,0,0.1)' }}>
+      <Text ta="center" fw={800} size="xl" style={{ letterSpacing: '-0.01em', marginBottom: 8 }}>
         Bienvenido de nuevo
-      </Typography>
-      <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mb: 3 }}>
+      </Text>
+      <Text ta="center" c="dimmed" size="sm" mb="lg">
         Ingresa tus credenciales para acceder a MediCitas
-      </Typography>
+      </Text>
 
-      {error && <Alert severity="error" sx={{ mb: 3, borderRadius: 2.5 }}>{error}</Alert>}
+      {error && <Alert color="red" mb="md" style={{ borderRadius: 20 }}>{error}</Alert>}
 
       <LoginForm onSubmit={handleLogin} />
 
-      <Box sx={{ textAlign: 'center', mt: 3 }}>
-        <Typography variant="body2" color="text.secondary">
+      <Box ta="center" mt="lg">
+        <Text size="sm" c="dimmed">
           ¿No tienes cuenta?{' '}
-          <Link component={RouterLink} to="/register" underline="hover" fontWeight={700} color="primary">
+          <Anchor component={RouterLink} to="/register" fw={700} c="primary">
             Regístrate aquí
-          </Link>
-        </Typography>
+          </Anchor>
+        </Text>
       </Box>
 
-      <Divider sx={{ my: 3 }}>
-        <Chip label="ACCESO RÁPIDO DEMO" size="small" sx={{ fontWeight: 700, fontSize: '0.7rem' }} />
-      </Divider>
+      <Divider my="lg" label={<Badge size="sm" style={{ fontWeight: 700, fontSize: '0.7rem' }}>ACCESO RÁPIDO DEMO</Badge>} labelPosition="center" />
 
-      <Box sx={{ display: 'flex', gap: 1.5, flexDirection: { xs: 'column', sm: 'row' } }}>
+      <Group gap="md" grow>
         <Button
-          fullWidth
-          variant="outlined"
-          size="small"
-          startIcon={<KeyIcon fontSize="small" />}
+          variant="outline"
+          size="sm"
+          leftSection={<IconKey size={16} />}
           onClick={() => handleQuickDemo('jefferson.mejia@gmail.com', 'admin123')}
-          sx={{ borderRadius: 2.5, py: 1 }}
+          style={{ borderRadius: 20 }}
         >
           Demo Admin
         </Button>
         <Button
-          fullWidth
-          variant="outlined"
-          color="secondary"
-          size="small"
-          startIcon={<KeyIcon fontSize="small" />}
+          variant="outline"
+          size="sm"
+          color="teal"
+          leftSection={<IconKey size={16} />}
           onClick={() => handleQuickDemo('andrea.cedeno@gmail.com', '123456')}
-          sx={{ borderRadius: 2.5, py: 1 }}
+          style={{ borderRadius: 20 }}
         >
           Demo Paciente
         </Button>
-      </Box>
+      </Group>
     </Paper>
   )
 }

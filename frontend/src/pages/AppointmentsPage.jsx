@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Grid, Paper, Typography } from '@mui/material'
+import { SimpleGrid, Paper, Text, Title, Box } from '@mantine/core'
 import { useLocation } from 'react-router-dom'
 import { useAppointments } from '../context/AppointmentsContext'
 import { useNotification } from '../context/NotificationContext'
@@ -37,17 +37,17 @@ export default function AppointmentsPage() {
     <Box>
       <Breadcrumb />
       <PageHeader title="Agendar Cita" subtitle="Selecciona fecha, médico y horario para tu consulta" />
-      <Grid container spacing={3}>
-        <Grid size={{ xs: 12, md: 7 }}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h6" fontWeight={600} mb={2}>Datos de la Cita</Typography>
+      <SimpleGrid cols={{ base: 1, md: 7, lg: 12 }} spacing="md">
+        <Box style={{ gridColumn: 'span 7' }}>
+          <Paper p="lg">
+            <Title order={4} fw={600} mb="md">Datos de la Cita</Title>
             <AppointmentForm doctors={doctors} specialties={specialties} selectedDoctor={location.state?.doctor} selectedDate={selectedDate} onSubmit={handleSubmit} />
           </Paper>
-        </Grid>
-        <Grid size={{ xs: 12, md: 5 }}>
+        </Box>
+        <Box style={{ gridColumn: 'span 5' }}>
           <Calendar selectedDate={selectedDate} onDateSelect={setSelectedDate} />
-        </Grid>
-      </Grid>
+        </Box>
+      </SimpleGrid>
     </Box>
   )
 }

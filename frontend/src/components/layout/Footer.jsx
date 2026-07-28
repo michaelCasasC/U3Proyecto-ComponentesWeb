@@ -1,22 +1,22 @@
-import { Box, Typography, Link, Container } from '@mui/material'
+import { Box, Text, Anchor, Container, Group } from '@mantine/core'
 import { Link as RouterLink } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', borderTop: '1px solid', borderColor: 'divider', py: 3, mt: 'auto' }}>
-      <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Box component="img" src="/favicon-32x32.png" alt="MediCitas Logo" sx={{ width: 22, height: 22, borderRadius: 0.5 }} />
-            <Typography variant="body2" color="text.secondary">
+    <Box component="footer" style={{ borderTop: '1px solid var(--mantine-color-gray-3)', padding: '16px 0', marginTop: 'auto' }}>
+      <Container size="lg">
+        <Group justify="space-between" align="center" gap="md">
+          <Group gap="xs" align="center">
+            <img src="/favicon-32x32.png" alt="MediCitas Logo" style={{ width: 22, height: 22, borderRadius: 4 }} />
+            <Text size="sm" c="dimmed">
               © {new Date().getFullYear()} MediCitas. Todos los derechos reservados.
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link component={RouterLink} to="/about" variant="body2" color="text.secondary" underline="hover">Acerca de</Link>
-            <Link component={RouterLink} to="/settings" variant="body2" color="text.secondary" underline="hover">Configuración</Link>
-          </Box>
-        </Box>
+            </Text>
+          </Group>
+          <Group gap="lg">
+            <Anchor component={RouterLink} to="/about" size="sm" c="dimmed">Acerca de</Anchor>
+            <Anchor component={RouterLink} to="/settings" size="sm" c="dimmed">Configuración</Anchor>
+          </Group>
+        </Group>
       </Container>
     </Box>
   )

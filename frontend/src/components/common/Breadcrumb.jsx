@@ -1,6 +1,6 @@
-import { Breadcrumbs, Typography, Link } from '@mui/material'
+import { Anchor, Text, Group } from '@mantine/core'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
-import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import { IconChevronRight } from '@tabler/icons-react'
 
 const breadcrumbMap = {
   '/': 'Inicio',
@@ -25,16 +25,19 @@ export default function Breadcrumb() {
   })
 
   return (
-    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} sx={{ mb: 2 }}>
-      {items.map((item, i) =>
-        i === items.length - 1 ? (
-          <Typography key={item.path} color="text.primary" fontWeight={500}>{item.label}</Typography>
-        ) : (
-          <Link key={item.path} component={RouterLink} to={item.path} underline="hover" color="inherit">
-            {item.label}
-          </Link>
-        )
-      )}
-    </Breadcrumbs>
+    <Group gap={4} mb="md">
+      {items.map((item, i) => (
+        <Group key={item.path} gap={4} align="center">
+          {i > 0 && <IconChevronRight size={14} color="var(--mantine-color-gray-5)" />}
+          {i === items.length - 1 ? (
+            <Text fw={500} size="sm">{item.label}</Text>
+          ) : (
+            <Anchor component={RouterLink} to={item.path} size="sm" c="dimmed">
+              {item.label}
+            </Anchor>
+          )}
+        </Group>
+      ))}
+    </Group>
   )
 }

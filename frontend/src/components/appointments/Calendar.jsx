@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Box, Typography, IconButton, Paper } from '@mui/material'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import { Box, Text, ActionIcon, Paper, Group } from '@mantine/core'
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, isToday } from 'date-fns'
 import { es } from 'date-fns/locale'
 
@@ -16,40 +15,54 @@ export default function Calendar({ selectedDate, onDateSelect, appointments = []
   const getAppointmentsCount = (day) => appointments.filter(a => a.date === format(day, 'yyyy-MM-dd')).length
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-        <IconButton onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}><ChevronLeftIcon /></IconButton>
-        <Typography variant="h6" fontWeight={600}>{format(currentMonth, 'MMMM yyyy', { locale: es })}</Typography>
-        <IconButton onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}><ChevronRightIcon /></IconButton>
-      </Box>
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 0.5 }}>
+    <Paper p="md">
+      <Group justify="space-between" mb="md">
+        <ActionIcon variant="subtle" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
+          <IconChevronLeft size={20} />
+        </ActionIcon>
+        <Text fw={600} size="lg">{format(currentMonth, 'MMMM yyyy', { locale: es })}</Text>
+        <ActionIcon variant="subtle" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
+          <IconChevronRight size={20} />
+        </ActionIcon>
+      </Group>
+      <Box style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4 }}>
         {['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'].map(d => (
-          <Typography key={d} variant="caption" align="center" sx={{ display: 'block' }} color="text.secondary" fontWeight={600}>
+          <Text key={d} size="xs" ta="center" c="dimmed" fw={600}>
             {d}
-          </Typography>
+          </Text>
         ))}
         {days.map(day => {
           const count = getAppointmentsCount(day)
           const isSelected = selectedDate && isSameDay(day, new Date(selectedDate))
+          const sameMonth = isSameMonth(day, currentMonth)
           return (
             <Box
               key={day.toISOString()}
-              onClick={() => isSameMonth(day, currentMonth) && onDateSelect(format(day, 'yyyy-MM-dd'))}
-              sx={{
-                p: 0.5,
+              onClick={() => sameMonth && onDateSelect(format(day, 'yyyy-MM-dd'))}
+              style={{
+                padding: 4,
                 textAlign: 'center',
-                cursor: isSameMonth(day, currentMonth) ? 'pointer' : 'default',
-                bgcolor: isSelected ? 'primary.main' : 'transparent',
-                color: isSelected ? 'white' : isToday(day) ? 'primary.main' : isSameMonth(day, currentMonth) ? 'text.primary' : 'text.disabled',
-                borderRadius: 1,
+                cursor: sameMonth ? 'pointer' : 'default',
+                backgroundColor: isSelected ? 'var(--mantine-color-primary-6)' : 'transparent',
+                color: isSelected ? 'white' : isToday(day) ? 'var(--mantine-color-primary-6)' : sameMonth ? 'var(--mantine-color-text)' : 'var(--mantine-color-gray-5)',
+                borderRadius: 8,
                 fontWeight: isToday(day) ? 700 : 400,
-                '&:hover': isSameMonth(day, currentMonth) ? { bgcolor: isSelected ? 'primary.dark' : 'action.hover' } : {},
                 position: 'relative',
               }}
+              onMouseEnter={(e) => {
+                if (sameMonth && !isSelected) {
+                  e.currentTarget.style.backgroundColor = 'var(--mantine-color-gray-1)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }
+              }}
             >
-              <Typography variant="body2">{format(day, 'd')}</Typography>
+              <Text size="sm">{format(day, 'd')}</Text>
               {count > 0 && (
-                <Typography variant="caption" sx={{ position: 'absolute', top: 0, right: 2, color: 'error.main', fontWeight: 700 }}>{count}</Typography>
+                <Text size="xs" style={{ position: 'absolute', top: 0, right: 2, color: 'var(--mantine-color-red-6)', fontWeight: 700 }}>{count}</Text>
               )}
             </Box>
           )

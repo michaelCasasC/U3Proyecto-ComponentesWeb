@@ -1,12 +1,11 @@
-import { Box, Typography, Button } from '@mui/material'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined'
+import { Alert, Button, Text } from '@mantine/core'
+import { IconError404 } from '@tabler/icons-react'
 
 export default function ErrorMessage({ message = 'Ocurrió un error', onRetry }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-      <ErrorOutlineIcon sx={{ fontSize: 64, color: 'error.main' }} />
-      <Typography variant="h6" color="error.main" mt={2}>{message}</Typography>
-      {onRetry && <Button variant="outlined" onClick={onRetry} sx={{ mt: 2 }}>Reintentar</Button>}
-    </Box>
+    <Alert icon={<IconError404 size={24} />} color="red" variant="filled" style={{ minHeight: 300, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Text size="lg" fw={600} mt="md">{message}</Text>
+      {onRetry && <Button variant="outline" color="white" onClick={onRetry} mt="md">Reintentar</Button>}
+    </Alert>
   )
 }

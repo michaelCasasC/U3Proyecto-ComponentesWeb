@@ -1,17 +1,14 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material'
+import { Modal, Text, Button, Group } from '@mantine/core'
 
 export default function ConfirmationDialog({ open, title, message, confirmText = 'Confirmar', cancelText = 'Cancelar', onConfirm, onCancel, severity = 'error' }) {
-  const colors = { error: 'error', warning: 'warning', info: 'primary' }
+  const colors = { error: 'red', warning: 'yellow', info: 'blue' }
   return (
-    <Dialog open={open} onClose={onCancel} maxWidth="xs" fullWidth>
-      <DialogTitle>{title || 'Confirmar acción'}</DialogTitle>
-      <DialogContent>
-        <DialogContentText>{message || '¿Está seguro de realizar esta acción?'}</DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onCancel} color="inherit">{cancelText}</Button>
-        <Button onClick={onConfirm} variant="contained" color={colors[severity] || 'primary'}>{confirmText}</Button>
-      </DialogActions>
-    </Dialog>
+    <Modal opened={open} onClose={onCancel} title={title || 'Confirmar acción'} size="sm">
+      <Text size="sm" c="dimmed">{message || '¿Está seguro de realizar esta acción?'}</Text>
+      <Group justify="flex-end" mt="lg">
+        <Button onClick={onCancel} variant="default">{cancelText}</Button>
+        <Button onClick={onConfirm} color={colors[severity] || 'blue'}>{confirmText}</Button>
+      </Group>
+    </Modal>
   )
 }

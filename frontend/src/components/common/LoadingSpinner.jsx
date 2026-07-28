@@ -1,10 +1,10 @@
-import { Box, CircularProgress, Typography } from '@mui/material'
+import { Box, Loader, Text } from '@mantine/core'
 
 export default function LoadingSpinner({ message = 'Cargando...' }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-      <CircularProgress size={48} />
-      <Typography variant="body2" color="text.secondary" mt={2}>{message}</Typography>
+    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+      <Loader size={48} />
+      <Text size="sm" c="dimmed" mt="md">{message}</Text>
     </Box>
   )
 }

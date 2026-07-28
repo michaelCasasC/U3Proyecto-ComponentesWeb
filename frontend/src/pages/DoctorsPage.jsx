@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { Box, Grid, Typography } from '@mui/material'
+import { SimpleGrid, Text, Box, Group } from '@mantine/core'
 import { useParams } from 'react-router-dom'
 import DoctorCard from '../components/doctors/DoctorCard'
 import SearchBar from '../components/common/SearchBar'
@@ -37,20 +37,18 @@ export default function DoctorsPage() {
     <Box>
       <Breadcrumb />
       <PageHeader title={specialtyName} subtitle={filtered.length > 0 ? `${filtered.length} médicos disponibles` : 'No se encontraron médicos'} />
-      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 3 }}>
+      <Group gap="md" mb="md" wrap="wrap">
         <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar médico..." />
         <FilterPanel filters={filters} onFilterChange={(key, val) => setFilters(prev => ({ ...prev, [key]: val }))} specialties={specialties} />
-      </Box>
-      <Grid container spacing={3}>
+      </Group>
+      <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="lg">
         {filtered.map(doc => (
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={doc.id}>
-            <DoctorCard doctor={doc} />
-          </Grid>
+          <DoctorCard key={doc.id} doctor={doc} />
         ))}
         {filtered.length === 0 && (
-          <Grid size={{ xs: 12 }}><Typography color="text.secondary" sx={{ textAlign: 'center', py: 8 }}>No se encontraron médicos</Typography></Grid>
+          <Text c="dimmed" style={{ textAlign: 'center', padding: '64px 0' }}>No se encontraron médicos</Text>
         )}
-      </Grid>
+      </SimpleGrid>
     </Box>
   )
 }

@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { Box } from '@mui/material'
+import { Box } from '@mantine/core'
 import CustomTextField from '../common/CustomTextField'
 import CustomButton from '../common/CustomButton'
-import PersonIcon from '@mui/icons-material/Person'
-import EmailIcon from '@mui/icons-material/Email'
-import LockIcon from '@mui/icons-material/Lock'
+import { IconUser, IconMail, IconLock } from '@tabler/icons-react'
 
 export default function RegisterForm({ onSubmit }) {
   const [name, setName] = useState('')
@@ -24,10 +22,10 @@ export default function RegisterForm({ onSubmit }) {
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
-      <CustomTextField label="Nombre Completo" value={name} onChange={(e) => setName(e.target.value)} icon={PersonIcon} required />
-      <CustomTextField label="Correo Electrónico" type="email" value={email} onChange={(e) => setEmail(e.target.value)} icon={EmailIcon} required />
-      <CustomTextField label="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} icon={LockIcon} required error={!!error} helperText={error} />
-      <CustomTextField label="Confirmar Contraseña" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} icon={LockIcon} required />
+      <CustomTextField label="Nombre Completo" value={name} onChange={(e) => setName(e.target.value)} icon={IconUser} required />
+      <CustomTextField label="Correo Electrónico" type="email" value={email} onChange={(e) => setEmail(e.target.value)} icon={IconMail} required />
+      <CustomTextField label="Contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} icon={IconLock} required error={!!error} helperText={error} />
+      <CustomTextField label="Confirmar Contraseña" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} icon={IconLock} required />
       <CustomButton type="submit" fullWidth>Crear Cuenta</CustomButton>
     </Box>
   )

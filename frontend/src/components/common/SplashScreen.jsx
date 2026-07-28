@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Box, Typography, CircularProgress } from '@mui/material'
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
+import { Box, Title, Text, Loader } from '@mantine/core'
+import { IconBuildingHospital } from '@tabler/icons-react'
 
 const MIN_DISPLAY_MS = 1500
 
@@ -17,23 +17,23 @@ export default function SplashScreen({ onFinish }) {
 
   return (
     <Box
-      sx={{
+      style={{
         position: 'fixed', inset: 0, zIndex: 99999,
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        bgcolor: '#1976d2',
+        backgroundColor: '#1976d2',
         transition: 'opacity 0.4s ease-out',
         opacity: fadeOut ? 0 : 1,
       }}
     >
-      <LocalHospitalIcon sx={{ fontSize: 80, color: 'white', mb: 2 }} />
-      <Typography variant="h3" fontWeight={800} color="white" sx={{ letterSpacing: 2 }}>
+      <IconBuildingHospital size={80} color="white" style={{ marginBottom: 16 }} />
+      <Title order={1} fw={800} c="white" style={{ letterSpacing: 2 }}>
         MediCitas
-      </Typography>
-      <Typography variant="body1" color="rgba(255,255,255,0.8)" sx={{ mt: 1 }}>
+      </Title>
+      <Text c="rgba(255,255,255,0.8)" mt="xs">
         Gestión de Citas Médicas
-      </Typography>
-      <CircularProgress size={28} sx={{ color: 'white', mt: 4 }} />
+      </Text>
+      <Loader size={28} color="white" style={{ marginTop: 32 }} />
     </Box>
   )
 }

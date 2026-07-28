@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Grid, Typography } from '@mui/material'
+import { SimpleGrid, Box } from '@mantine/core'
 import SpecialtyCard from '../components/doctors/SpecialtyCard'
 import SearchBar from '../components/common/SearchBar'
 import Breadcrumb from '../components/common/Breadcrumb'
@@ -17,13 +17,11 @@ export default function SpecialtiesPage() {
       <Breadcrumb />
       <PageHeader title="Especialidades Médicas" subtitle="Selecciona una especialidad para ver los médicos disponibles" />
       <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar especialidad..." />
-      <Grid container spacing={3}>
+      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
         {filtered.map(s => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={s.id}>
-            <SpecialtyCard specialty={s} />
-          </Grid>
+          <SpecialtyCard key={s.id} specialty={s} />
         ))}
-      </Grid>
+      </SimpleGrid>
     </Box>
   )
 }

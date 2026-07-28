@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Paper, Typography, Link, Box, Alert } from '@mui/material'
+import { Paper, Text, Anchor, Box, Alert } from '@mantine/core'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import RegisterForm from '../components/forms/RegisterForm'
 import { useAuth } from '../context/AuthContext'
@@ -17,16 +17,16 @@ export default function RegisterPage() {
   }
 
   return (
-    <Paper sx={{ p: 4 }}>
-      <Typography variant="h5" fontWeight={700} textAlign="center" mb={3}>Crear Cuenta</Typography>
-      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
-      {success && <Alert severity="success" sx={{ mb: 2 }}>Registro exitoso. Redirigiendo al inicio de sesión...</Alert>}
+    <Paper p="lg" style={{ borderRadius: 32 }}>
+      <Text ta="center" fw={700} size="xl" mb="lg">Crear Cuenta</Text>
+      {error && <Alert color="red" mb="md" style={{ borderRadius: 20 }}>{error}</Alert>}
+      {success && <Alert color="green" mb="md" style={{ borderRadius: 20 }}>Registro exitoso. Redirigiendo al inicio de sesión...</Alert>}
       {!success && <RegisterForm onSubmit={handleRegister} />}
-      <Box textAlign="center" mt={2}>
-        <Typography variant="body2">
+      <Box ta="center" mt="md">
+        <Text size="sm">
           ¿Ya tienes cuenta?{' '}
-          <Link component={RouterLink} to="/login" underline="hover">Inicia Sesión</Link>
-        </Typography>
+          <Anchor component={RouterLink} to="/login" underline="hover">Inicia Sesión</Anchor>
+        </Text>
       </Box>
     </Paper>
   )

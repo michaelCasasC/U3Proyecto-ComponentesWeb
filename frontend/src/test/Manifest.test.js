@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
-const manifestPath = resolve(__dirname, '../../../public/manifest.webmanifest')
+const manifestPath = resolve(__dirname, '../../public/manifest.webmanifest')
 const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'))
 
 describe('PWA Manifest (splash screen)', () => {

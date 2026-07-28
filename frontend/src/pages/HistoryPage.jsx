@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Typography, Tabs, Tab, Paper } from '@mui/material'
+import { Box, Tabs, Title, Group } from '@mantine/core'
 import { useAuth } from '../context/AuthContext'
 import { useAppointments } from '../context/AppointmentsContext'
 import AppointmentCard from '../components/appointments/AppointmentCard'
@@ -21,8 +21,12 @@ export default function HistoryPage() {
     <Box>
       <Breadcrumb />
       <PageHeader title="Historial de Citas" subtitle={`${userAppointments.length} citas registradas`} />
-      <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 3 }}>
-        {statusTabs.map(s => <Tab key={s} label={s} />)}
+      <Tabs value={tab.toString()} onChange={(value) => setTab(Number(value))} mb="md">
+        <Tabs.List>
+          {statusTabs.map((s, i) => (
+            <Tabs.Tab key={s} value={i.toString()}>{s}</Tabs.Tab>
+          ))}
+        </Tabs.List>
       </Tabs>
       {filtered.length === 0 ? (
         <EmptyState message="No hay citas en esta categoría" />

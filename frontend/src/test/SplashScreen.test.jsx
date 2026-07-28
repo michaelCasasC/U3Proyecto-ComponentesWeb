@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, screen, act } from '@testing-library/react'
+import { screen, act } from '@testing-library/react'
+import { render } from './setup'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import SplashScreen from '../components/common/SplashScreen'
 
@@ -16,7 +17,7 @@ describe('SplashScreen', () => {
 
   it('shows a loading spinner', () => {
     render(<SplashScreen onFinish={vi.fn()} />)
-    expect(screen.getByRole('progressbar')).toBeInTheDocument()
+    expect(document.querySelector('.mantine-Loader-root')).toBeInTheDocument()
   })
 
   it('calls onFinish after minimum display time', () => {
@@ -29,8 +30,8 @@ describe('SplashScreen', () => {
   })
 
   it('has blue background', () => {
-    const { container } = render(<SplashScreen onFinish={vi.fn()} />)
-    const box = container.firstChild
-    expect(box).toHaveStyle('background-color: #1976d2')
+    render(<SplashScreen onFinish={vi.fn()} />)
+    const box = document.querySelector('[style*="background-color"]')
+    expect(box).toHaveStyle('background-color: rgb(25, 118, 210)')
   })
 })

@@ -1,46 +1,40 @@
-import { Box, Container, Typography, useTheme } from '@mui/material'
+import { Container, Text, Title, Box } from '@mantine/core'
 import { Outlet, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function AuthLayout() {
   const { user } = useAuth()
-  const theme = useTheme()
 
   if (user) return <Navigate to="/" replace />
 
   return (
-    <Box sx={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      bgcolor: 'background.default',
-      position: 'relative',
-      overflow: 'hidden',
-      py: 6,
-      background: theme.palette.mode === 'dark'
-        ? 'radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15) 0%, rgba(11, 15, 25, 1) 70%)'
-        : 'radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 1) 70%)',
-    }}>
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Box
-            component="img"
+    <Box
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '48px 0',
+        background: 'radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 1) 70%)',
+      }}
+    >
+      <Container size="sm" style={{ position: 'relative', zIndex: 1 }}>
+        <Box style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <img
             src="/android-chrome-192x192.png"
             alt="MediCitas Logo"
-            sx={{
+            style={{
               width: 80,
               height: 80,
-              mb: 1.5,
-              borderRadius: 3.5,
+              marginBottom: '12px',
+              borderRadius: '28px',
               boxShadow: '0 8px 24px rgba(37, 99, 235, 0.25)',
-              transition: 'transform 0.3s ease',
-              '&:hover': { transform: 'scale(1.05)' },
             }}
           />
-          <Typography
-            variant="h3"
-            fontWeight={800}
-            sx={{
+          <Title
+            order={1}
+            style={{
+              fontWeight: 800,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(135deg, #2563eb 0%, #0d9488 100%)',
               WebkitBackgroundClip: 'text',
@@ -48,10 +42,10 @@ export default function AuthLayout() {
             }}
           >
             MediCitas
-          </Typography>
-          <Typography variant="body1" color="text.secondary" fontWeight={500} sx={{ mt: 0.5 }}>
+          </Title>
+          <Text c="dimmed" size="md" fw={500} mt={4}>
             Gestión inteligente de citas médicas
-          </Typography>
+          </Text>
         </Box>
         <Outlet />
       </Container>

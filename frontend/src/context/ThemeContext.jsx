@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useMemo } from 'react'
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
-import { CssBaseline } from '@mui/material'
+import { MantineProvider } from '@mantine/core'
 import { getTheme } from '../theme/theme'
 
 const ThemeContext = createContext()
@@ -23,10 +22,9 @@ export function ThemeProvider({ children }) {
 
   return (
     <ThemeContext.Provider value={{ mode, toggleTheme }}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
+      <MantineProvider theme={theme} defaultColorScheme={mode} forceColorScheme={mode}>
         {children}
-      </MuiThemeProvider>
+      </MantineProvider>
     </ThemeContext.Provider>
   )
 }
