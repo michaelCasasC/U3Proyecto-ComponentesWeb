@@ -1,7 +1,7 @@
 const express = require('express')
 const webpush = require('web-push')
 const db = require('../database/conexion')
-const { authenticate } = require('../middlewares/authentication')
+const authenticate = require('../middlewares/authentication')
 
 const router = express.Router()
 
