@@ -29,7 +29,7 @@ export default function DoctorsPage() {
     if (filters.specialty) result = result.filter(d => d.specialty === filters.specialty)
     if (filters.available !== '') result = result.filter(d => d.available === (filters.available === 'true'))
     return result
-  }, [id, search, filters])
+  }, [id, search, filters, doctors])
 
   const specialtyName = id ? specialties.find(s => s.id === Number(id))?.name : 'Médicos'
 

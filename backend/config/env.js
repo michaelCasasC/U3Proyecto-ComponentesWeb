@@ -10,6 +10,8 @@ module.exports = {
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN,
   frontendUrls: process.env.FRONTEND_URL.split(',').map(url => url.trim()),
+  vapidPublicKey: process.env.VAPID_PUBLIC_KEY || '',
+  vapidPrivateKey: process.env.VAPID_PRIVATE_KEY || '',
   database: {
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),

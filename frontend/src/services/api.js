@@ -43,4 +43,7 @@ export const api = {
   updateSpecialty: (id, data) => request(`/specialties/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteSpecialty: id => request(`/specialties/${id}`, { method: 'DELETE' }),
   deleteUser: id => request(`/users/${id}`, { method: 'DELETE' }),
+  subscribePush: subscription => request('/push/subscribe', { method: 'POST', body: JSON.stringify(subscription) }),
+  unsubscribePush: endpoint => request('/push/unsubscribe', { method: 'POST', body: JSON.stringify({ endpoint }) }),
+  sendPushNotification: (title, body, url, userId) => request('/push/send', { method: 'POST', body: JSON.stringify({ title, body, url, userId }) }),
 }

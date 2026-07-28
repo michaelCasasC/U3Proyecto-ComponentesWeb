@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+import { registerServiceWorker } from './pwa/registerSW'
 
 function renderApp() {
   const root = document.getElementById('app')
@@ -19,13 +20,6 @@ function renderApp() {
   )
 }
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (const reg of registrations) {
-      reg.unregister()
-      console.log('ServiceWorker unregistered')
-    }
-  })
-}
+registerServiceWorker()
 
 renderApp()

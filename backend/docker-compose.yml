@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_EXPOSED_PORT}:${DB_PORT}"
+      - "${DB_EXPOSED_PORT}:5432"
     volumes:
       - medicitas_postgres_data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d:ro

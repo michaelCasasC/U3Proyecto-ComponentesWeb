@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from '@mui/material'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined'
 
 export default function ErrorMessage({ message = 'Ocurrió un error', onRetry }) {
   return (

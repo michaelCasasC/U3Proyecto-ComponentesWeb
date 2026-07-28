@@ -5,6 +5,7 @@ import Navbar from '../components/layout/Navbar'
 import Sidebar from '../components/layout/Sidebar'
 import Footer from '../components/layout/Footer'
 import NotificationSnackbar from '../components/common/NotificationSnackbar'
+import PwaInstallPrompt from '../pwa/PwaInstallPrompt'
 
 export default function MainLayout() {
   const { user, loading } = useAuth()
@@ -22,6 +23,7 @@ export default function MainLayout() {
       </Box>
       <Footer />
       <NotificationSnackbar />
+      <PwaInstallPrompt />
     </Box>
   )
 }

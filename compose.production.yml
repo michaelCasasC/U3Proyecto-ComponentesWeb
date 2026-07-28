@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-medicitas}
+      POSTGRES_USER: ${DB_USER:-medicitas}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cambie-esta-clave}
+    volumes:
+      - medicitas_postgres_data:/var/lib/postgresql/data
+      - ./backend/db:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-medicitas} -d ${DB_DATABASE:-medicitas}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    networks:
+      - medicitas_network
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY:-user/medi-citas}-backend:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-8h}
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-medicitas}
+      DB_USER: ${DB_USER:-medicitas}
+      DB_PASSWORD: ${DB_PASSWORD:-cambie-esta-clave}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY}
+    networks:
+      - medicitas_network
+    restart: unless-stopped
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY:-user/medi-citas}-frontend:latest
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    networks:
+      - medicitas_network
+    restart: unless-stopped
+
+volumes:
+  medicitas_postgres_data:
+
+networks:
+  medicitas_network:
+    driver: bridge

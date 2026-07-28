@@ -1,10 +1,18 @@
 const app = require('./app')
 const db = require('./database/conexion')
-const { port } = require('./config/env')
+const env = require('./config/env')
 
-db.query('SELECT 1')
-  .then(() => app.listen(port, () => console.log(`MediCitas API ejecutándose en el puerto ${port}`)))
-  .catch(error => {
-    console.error('No se pudo inicializar PostgreSQL:', error)
-    process.exit(1)
-  })
+function startServer() {
+  db.query('SELECT 1')
+    .then(() => app.listen(env.port, () => console.log(`MediCitas API ejecutándose en el puerto ${env.port}`)))
+    .catch(error => {
+      console.error('No se pudo inicializar PostgreSQL:', error)
+      process.exit(1)
+    })
+}
+
+if (process.env.NODE_ENV !== 'production' && process.env.VERCEL_ENV !== 'false') {
+  startServer()
+}
+
+module.exports = app

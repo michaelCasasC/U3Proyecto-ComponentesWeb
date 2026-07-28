@@ -1,0 +1,46 @@
+{
+  "name": "medi-citas-frontend",
+  "private": true,
+    "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "backend:up": "docker compose --env-file ../backend/.env -f ../backend/docker-compose.yml up -d",
+    "backend:start": "npm --prefix ../backend start",
+    "backend:dev": "npm --prefix ../backend run dev",
+    "backend:down": "docker compose --env-file ../backend/.env -f ../backend/docker-compose.yml down",
+    "backend:logs": "docker compose --env-file ../backend/.env -f ../backend/docker-compose.yml logs -f db",
+    "docker:up": "docker compose --env-file ../.env.production up -d --build",
+    "docker:down": "docker compose --env-file ../.env.production down",
+    "docker:logs": "docker compose --env-file ../.env.production logs -f"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "jsdom": "^26.0.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1",
+    "vitest": "^3.1.1"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/material": "^9.2.0",
+    "@mui/x-data-grid": "^9.10.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "date-fns": "^4.4.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.1",
+    "vite-plugin-pwa": "^1.3.0"
+  }
+}

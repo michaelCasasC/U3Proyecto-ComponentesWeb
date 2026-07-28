@@ -1,35 +1,10 @@
 {
-  "name": "medi-citas",
+  "name": "medicitas",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "backend:up": "docker compose --env-file backend/.env -f backend/docker-compose.yml up -d",
-    "backend:start": "npm --prefix backend start",
-    "backend:dev": "npm --prefix backend run dev",
-    "backend:down": "docker compose --env-file backend/.env -f backend/docker-compose.yml down",
-    "backend:logs": "docker compose --env-file backend/.env -f backend/docker-compose.yml logs -f db"
-  },
-  "devDependencies": {
-    "typescript": "~6.0.2",
-    "vite": "^8.1.1"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^9.2.0",
-    "@mui/material": "^9.2.0",
-    "@mui/x-data-grid": "^9.10.1",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
-    "date-fns": "^4.4.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.1",
-    "vite-plugin-pwa": "^1.3.0"
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "test": "cd frontend && npm test"
   }
 }
