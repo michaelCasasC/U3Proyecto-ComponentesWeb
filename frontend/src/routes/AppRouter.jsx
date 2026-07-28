@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
 import AuthLayout from '../layouts/AuthLayout'
 import AdminLayout from '../layouts/AdminLayout'
+import ProtectedRoute from '../components/auth/ProtectedRoute'
+import AdminRoute from '../components/auth/AdminRoute'
 import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import DashboardPage from '../pages/DashboardPage'
@@ -22,19 +24,23 @@ export default function AppRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/specialties" element={<SpecialtiesPage />} />
-        <Route path="/specialties/:id" element={<DoctorsPage />} />
-        <Route path="/doctors" element={<DoctorsPage />} />
-        <Route path="/appointments" element={<AppointmentsPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/about" element={<AboutPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/specialties" element={<SpecialtiesPage />} />
+          <Route path="/specialties/:id" element={<DoctorsPage />} />
+          <Route path="/doctors" element={<DoctorsPage />} />
+          <Route path="/appointments" element={<AppointmentsPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Route>
       </Route>
-      <Route element={<AdminLayout />}>
-        <Route path="/admin" element={<AdminPage />} />
+      <Route element={<AdminRoute />}>
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
